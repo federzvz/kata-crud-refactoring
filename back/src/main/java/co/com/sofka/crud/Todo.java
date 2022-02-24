@@ -1,5 +1,6 @@
 package co.com.sofka.crud;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
