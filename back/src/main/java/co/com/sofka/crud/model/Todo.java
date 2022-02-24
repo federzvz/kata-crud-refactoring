@@ -1,9 +1,6 @@
 package co.com.sofka.crud.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Todo {
@@ -12,13 +9,18 @@ public class Todo {
     private Long id;
     private String name;
     private boolean completed;
-    private String groupListId;
 
-    public String getGroupListId() {
-        return groupListId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name="id_tarea")
+    private Grupo groupListId;
+
+    public Todo() {
     }
 
-    public void setGroupListId(String groupListId) {
+    public Todo(Long id, String name, boolean completed, Grupo groupListId) {
+        this.id = id;
+        this.name = name;
+        this.completed = completed;
         this.groupListId = groupListId;
     }
 
@@ -44,5 +46,13 @@ public class Todo {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Grupo getGroupListId() {
+        return groupListId;
+    }
+
+    public void setGroupListId(Grupo groupListId) {
+        this.groupListId = groupListId;
     }
 }
