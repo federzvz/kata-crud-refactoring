@@ -3,6 +3,7 @@ package co.com.sofka.crud.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "todos")
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

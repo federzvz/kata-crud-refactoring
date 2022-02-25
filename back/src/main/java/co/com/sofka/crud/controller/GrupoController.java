@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/grupos")
 public class GrupoController {
     @Autowired
     private GrupoService service;
 
-    @GetMapping(value = "api/grupos")
+    @GetMapping
     public ResponseEntity<List<Grupo>> list(){
         try{
             List<Grupo> todoLists = service.findAll();
@@ -30,7 +31,7 @@ public class GrupoController {
         }
     }
 
-    @PostMapping(value = "api/grupo")
+    @PostMapping
     public ResponseEntity<Grupo> save(@RequestBody Grupo grupo){
         try{
             return new ResponseEntity<>(service.save(grupo), HttpStatus.CREATED);
@@ -39,7 +40,7 @@ public class GrupoController {
         }
     }
 
-    @PutMapping(value = "api/grupo/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Grupo grupo){
         try{
             Grupo todoListUpdated = service.update(id, grupo);
@@ -49,7 +50,7 @@ public class GrupoController {
         }
     }
 
-    @DeleteMapping(value = "api/{id}/grupo")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTodoList(@PathVariable("id") Long id){
         try{
             service.deleteById(id);
@@ -59,7 +60,7 @@ public class GrupoController {
         }
     }
 
-    @GetMapping("api/{id}/grupo")
+    @GetMapping("/{id}")
     public ResponseEntity<Grupo> getTodoList(@PathVariable("id") Long id){
         try{
             Grupo todoList = service.findById(id);
