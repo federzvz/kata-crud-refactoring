@@ -1,27 +1,27 @@
-package co.com.sofka.crud.model;
+package co.com.sofka.crud.entity;
 
 import javax.persistence.*;
 
 @Entity
 public class Todo {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "is_complete")
     private boolean completed;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name="id_tarea")
-    private Grupo groupListId;
+    @Column(name = "list_todo_id")
+    private Long idTodoList;
 
-    public Todo() {
+    public Todo(){
     }
 
-    public Todo(Long id, String name, boolean completed, Grupo groupListId) {
-        this.id = id;
+    public Todo(String name, Long idTodoList) {
         this.name = name;
         this.completed = completed;
-        this.groupListId = groupListId;
+        this.idTodoList = idTodoList;
     }
 
     public Long getId() {
@@ -48,11 +48,11 @@ public class Todo {
         this.completed = completed;
     }
 
-    public Grupo getGroupListId() {
-        return groupListId;
+    public Long getIdTodoList() {
+        return idTodoList;
     }
 
-    public void setGroupListId(Grupo groupListId) {
-        this.groupListId = groupListId;
+    public void setIdTodoList(Long idTodoList) {
+        this.idTodoList = idTodoList;
     }
 }
