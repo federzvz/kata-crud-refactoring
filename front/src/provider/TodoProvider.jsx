@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import TodoReducer from "./TodoReducer";
+import TodoReducer from '../reducer/TodoReducer';
 
 
 const TodoProvider = ({ children }) => {

@@ -13,20 +13,20 @@ function App() {
 export default App;*/
 
 import React, { Fragment } from 'react';
-import ListProvider from './components/Grupo/ListProvider';
+import ListProvider from './provider/ListProvider';
 import ListForm from './components/Grupo/ListForm';
 import ListView from './components/Grupo/ListView';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     return (
         <Fragment>
-            <h2>Listas de TODO's</h2>
-            <div>
-                <ListProvider>
-                    <ListForm />
-                    <ListView />
-                </ListProvider>
-            </div>
+              <div>
+                  <ListProvider>
+                      <ListForm />
+                      <ListView />
+                  </ListProvider>
+              </div>
         </Fragment>
     );
 }
