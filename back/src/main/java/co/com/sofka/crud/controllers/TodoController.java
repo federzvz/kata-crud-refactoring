@@ -84,6 +84,23 @@ public class TodoController {
         }
     }
 
+    @PutMapping("/completed/{id}")
+    public ResponseEntity<String> toggleCompleted(@PathVariable("id") Long id){
+        try{
+            Todo todoAux= serviceTodo.findById(id);
+            if(todoAux.isCompleted()){
+                todoAux.setCompleted(false);
+                serviceTodo.update(id, todoAux);
+                return new ResponseEntity<>("BEFORE: True -> NOW: False",HttpStatus.OK);
+            }
+            todoAux.setCompleted(true);
+            serviceTodo.update(id, todoAux);
+            return new ResponseEntity<>("BEFORE: False -> NOW: True",HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+
     @DeleteMapping
     public ResponseEntity<String> deleteAllTodos(){
         try{

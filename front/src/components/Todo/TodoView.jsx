@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, Fragment } from "react";
 import { TodoStore, HOST_API } from '../../provider/TodoProvider';
 
 const TodoView = (props) => {
@@ -25,7 +25,20 @@ const TodoView = (props) => {
     dispatch({ type: "edit-item", item: todo });
   };
 
+  const onToggleStatus = (todo) => {
+    console.log(todo);
+    fetch(HOST_API + "/todos/completed/" + todo,{
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      }}).then(response => response.json())
+          .then((todo) => {
+            dispatch({ type: "update-item", item: todo });
+          });
+      };
+
   return (
+      <Fragment>
     <figure class="text-center">
       <div class="container px-4">
         <div class="table-responsive">
@@ -50,8 +63,10 @@ const TodoView = (props) => {
                   <tr key={todo.id}>
                     <td>{todo.id}</td>
                     <td>{todo.name}</td>
-                    <td>
-                      <input class="form-check-input" type="checkbox"></input>
+                    <td> {(todo.isComplete === true) ? 
+                            <input class="form-check-input" type="checkbox" onClick={() => onToggleStatus(todo.id)} checked></input> : 
+                            <input class="form-check-input" type="checkbox" onClick={() => onToggleStatus(todo.id)}></input>
+                            }
                     </td>
                     <td>
                       <button class="btn btn-secondary rounded-pill " onClick={() => onDelete(todo.id)}>
@@ -71,6 +86,7 @@ const TodoView = (props) => {
         </div>
       </div>
     </figure>
+    </Fragment>
   );
 };
 

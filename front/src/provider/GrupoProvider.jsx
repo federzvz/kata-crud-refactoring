@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import ListReducer from "../reducer/ListReducer";
+import GrupoReducer from "../reducer/GrupoReducer";
 
 
 const ListProvider = ({ children }) => {
@@ -7,7 +7,7 @@ const ListProvider = ({ children }) => {
         list: [],
         item: {}
     };
-    const [state, dispatch] = useReducer(ListReducer, listInitialState);
+    const [state, dispatch] = useReducer(GrupoReducer, listInitialState);
     return (
         <ListStore.Provider value={{ state, dispatch }}>{ children }</ListStore.Provider>
     );

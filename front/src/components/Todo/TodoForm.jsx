@@ -12,7 +12,7 @@ const TodoForm = (props) => {
             name: state.name,
             id: null,
             isComplete: false,
-            idTodoList: props.listId
+            idTodoList: props.listId,
         }
         fetch(HOST_API + "/todos", {
             method: "POST",

@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState } from 'react';
-import { ListStore, HOST_API } from '../../provider/ListProvider';
+import { ListStore, HOST_API } from '../../provider/GrupoProvider';
 
-const ListForm = () => {
+const GrupoForm = () => {
     const formListRef = useRef(null);
     const { dispatch, state: { item } } = useContext(ListStore);
     const [ state, setState ] = useState(item);
@@ -46,14 +46,6 @@ const ListForm = () => {
     };
 
     return (
-        /*<form ref={formListRef}>
-            <input type="text" name="name" defaultValue={item.name}
-            onChange={(event) => {
-                setState({ ...state, name: event.target.value });
-            }}></input>
-            {!item.id && <button onClick={onAdd}>Add</button>}
-            {item.id && <button onClick={onEdit}>Edit</button>}
-        </form>*/
         <div class="container px-4 d-flex justify-content-center" style={{textalign: 'center'}}>
         <form ref={formListRef} name="login" method="POST" action=""
             class="needs-validation" novalidate>
@@ -82,4 +74,4 @@ const ListForm = () => {
     );
 }
  
-export default ListForm;
+export default GrupoForm;

@@ -19,6 +19,12 @@ public class Todo {
     public Todo(){
     }
 
+    public Todo(String name, boolean completed, Long idTodoList) {
+        this.name = name;
+        this.completed = completed;
+        this.idTodoList = idTodoList;
+    }
+
     public Todo(String name, Long idTodoList) {
         this.name = name;
         this.completed = completed;

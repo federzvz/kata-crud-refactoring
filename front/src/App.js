@@ -13,19 +13,22 @@ function App() {
 export default App;*/
 
 import React, { Fragment } from 'react';
-import ListProvider from './provider/ListProvider';
-import ListForm from './components/Grupo/ListForm';
-import ListView from './components/Grupo/ListView';
+import GrupoProvider from './provider/GrupoProvider';
+import GrupoForm from './components/Grupo/GrupoForm';
+import GrupoView from './components/Grupo/GrupoView';
+import TodoForm from './components/Todo/TodoForm';
+import TodoView from './components/Todo/TodoView';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import TodoProvider from './provider/TodoProvider';
 
 function App() {
     return (
         <Fragment>
               <div>
-                  <ListProvider>
-                      <ListForm />
-                      <ListView />
-                  </ListProvider>
+                  <GrupoProvider>
+                      <GrupoForm />
+                      <GrupoView />
+                  </GrupoProvider>
               </div>
         </Fragment>
     );
