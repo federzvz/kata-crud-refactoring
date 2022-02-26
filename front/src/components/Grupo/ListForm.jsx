@@ -57,7 +57,7 @@ const ListForm = () => {
         <div class="container px-4 d-flex justify-content-center" style={{textalign: 'center'}}>
         <form ref={formListRef} name="login" method="POST" action=""
             class="needs-validation" novalidate>
-            <h1 class="mb-5" style={{color:'azure', margintop: '20px'}}>DASHBOARD</h1>
+            <h1 class="mb-5 mt-5" style={{color:'azure'}}>DASHBOARD</h1>
             <div class="form-group">
                 <input type="text" name="name" class="form-control rounded-pill mb-2" id="validationCustom01"
                     placeholder="Nuevo grupo de tareas" required defaultValue={item.name} onChange={(event) => {
@@ -67,12 +67,12 @@ const ListForm = () => {
             <div class="d-flex justify-content-center align-items-center">
             {!item.id && <button id="login" onClick={onAdd} class="btn btn-secondary rounded-pill mb-4"
                     style={{margintop: '10px', textalign: 'center'}}>
-                    Add
+                    Añadir
                     <i class="bi bi-chevron-right"></i>
                 </button>}
                 {item.id && <button id="login" onClick={onEdit} class="btn btn-secondary rounded-pill mb-4"
                     style={{margintop: '10px', textalign: 'center'}}>
-                    Edit
+                    Editar
                     <i class="bi bi-chevron-right"></i>
                 </button>}
             </div>

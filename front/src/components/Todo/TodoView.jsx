@@ -26,37 +26,13 @@ const TodoView = (props) => {
   };
 
   return (
-    /*<div className='flex-column'>
-            <div className='flex-row'>
-                {
-                    (state.list.length > 0) ? 
-                    <div className='flex-row'>
-                        <h3>ID</h3>
-                        <h3>Name</h3>
-                        <h3>It is complete?</h3>
-                    </div> :
-                    <h3>Lista vacía</h3>
-                }
-            </div>
-            <div>
-                {state.list.map((todo) => { return (
-                    <div key={todo.id} className='flex-row'>
-                        <h3>{todo.id}</h3>
-                        <h3>{todo.name}</h3>
-                        <h3>{todo.isComplete ? 'Si' : 'No'}</h3>
-                        <button onClick={() => onDelete(todo.id)}>Delete</button>
-                        <button onClick={() => onEdit(todo)}>Edit</button>
-                    </div> );
-                })}
-            </div>
-        </div>*/
     <figure class="text-center">
       <div class="container px-4">
         <div class="table-responsive">
           {state.list.length > 0 ? (
             <div></div>
           ) : (
-            <h3>Lista vacía</h3>
+            <h3>El Grupo no tiene ninguna tarea.</h3>
           )}
         </div>
         <div class="table-responsive">
@@ -79,12 +55,12 @@ const TodoView = (props) => {
                     </td>
                     <td>
                       <button class="btn btn-secondary rounded-pill " onClick={() => onDelete(todo.id)}>
-                        Eliminar
+                        Eliminar {todo.name}
                       </button>
                     </td>
                     <td>
                       <button class="btn btn-secondary rounded-pill " onClick={() => onEdit(todo)}>
-                        Editar
+                        Editar {todo.name}
                       </button>
                     </td>
                   </tr>

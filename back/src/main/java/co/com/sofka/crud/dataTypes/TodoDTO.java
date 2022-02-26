@@ -1,25 +1,25 @@
-package co.com.sofka.crud.entity;
+package co.com.sofka.crud.dataTypes;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Entity
-@Table(name = "todos")
-public class Todo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class TodoDTO {
     private Long id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "is_complete")
     private boolean completed;
-
-    @Column(name = "list_todo_id")
     private Long idTodoList;
 
-    public Todo(){
+    public TodoDTO() {
+    }
+    public TodoDTO(String name, Long idTodoList) {
+        this.name = name;
+        this.idTodoList = idTodoList;
     }
 
-    public Todo(String name, Long idTodoList) {
+    public TodoDTO(Long id, String name, boolean completed, Long idTodoList) {
+        this.id = id;
         this.name = name;
         this.completed = completed;
         this.idTodoList = idTodoList;

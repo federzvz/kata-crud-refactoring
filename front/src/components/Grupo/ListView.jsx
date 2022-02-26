@@ -32,39 +32,28 @@ const ListView = () => {
     return (
         <Fragment>
             {state.list.map((list) => { return (
-            /*<div key={list.id}>
-                <div>
-                    <div className='flex-row'>
-                        <h3>ID: <span>{list.id}</span></h3>
-                        <h3>Name: <span>{list.name}</span></h3>
-                        <button onClick={() => onDelete(list.id)}>Delete</button>
-                        <button onClick={() => onEdit(list)}>Edit</button>
-                    </div> 
-                </div>
-                <div>
-                    <TodoProvider>
-                        <div className='flex-row'>
-                            <h3>TODO's de la lista:</h3>
-                            <TodoForm listId = {list.id} />
-                        </div>
-                        <TodoView listId = {list.id} />
-                    </TodoProvider>
-                </div>
-            </div>*/
             <div key={list.id}>
             <figure class="text-center">
                 <div>
                     <div className='flex-row'>
-                        <h3>ID: <span>{list.id}</span></h3>
-                        <h3>Name: <span>{list.name}</span></h3>
+                        
+                        
+                        <table id="tableGrupoView" class="table" style={{textalign: 'center'}}>
+                            <tbody id="tableGrupoView">
+                                <tr id="tableGrupoView">
+                                    <td id="tableGrupoView"></td>
+                                </tr>
+                            </tbody>
+                            <h5><br></br>Nombre del Grupo: <span>{list.name}</span></h5>
+                        </table>
                         <button onClick={() => onDelete(list.id)} class="btn btn-secondary rounded-pill mb-4"
                         style={{margintop: '10px', textalign: 'center'}}>
-                        Eliminar
+                        Eliminar {list.name}
                         <i class="bi bi-chevron-right"></i>
                          </button>
                          <button onClick={() => onEdit(list)} class="btn btn-secondary rounded-pill mb-4"
                         style={{margintop: '10px', textalign: 'center'}}>
-                        Editar
+                        Editar {list.name}
                         <i class="bi bi-chevron-right"></i>
                          </button>
                     </div> 

@@ -50,14 +50,6 @@ const TodoForm = (props) => {
     };
 
     return (
-        /*<form ref={formTodoRef}>
-            <input type="text" name="name" defaultValue={item.name}
-            onChange={(event) => {
-                setState({ ...state, name: event.target.value });
-            }}></input>
-            {!item.id && <button onClick={onAdd}>Add</button>}
-            {item.id && <button onClick={onEdit}>Edit</button>}
-        </form>*/
         <div class="container px-4 d-flex justify-content-center" style={{textalign: 'center'}}>
         <form ref={formTodoRef} name="login" method="POST" action=""
             class="needs-validation" novalidate>
@@ -71,12 +63,12 @@ const TodoForm = (props) => {
             <div class="d-flex justify-content-center align-items-center">
             {!item.id && <button id="login" onClick={onAdd} class="btn btn-secondary rounded-pill mb-4"
                     style={{margintop: '10px', textalign: 'center'}}>
-                    Add
+                    Crear Tarea
                     <i class="bi bi-chevron-right"></i>
                 </button>}
                 {item.id && <button id="login" onClick={onEdit} class="btn btn-secondary rounded-pill mb-4"
                     style={{margintop: '10px', textalign: 'center'}}>
-                    Edit
+                    Editar Tarea
                     <i class="bi bi-chevron-right"></i>
                 </button>}
             </div>

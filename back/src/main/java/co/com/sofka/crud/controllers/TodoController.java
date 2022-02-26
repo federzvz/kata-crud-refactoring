@@ -1,11 +1,11 @@
-package co.com.sofka.crud.controller;
+package co.com.sofka.crud.controllers;
 
-import co.com.sofka.crud.entity.Grupo;
-import co.com.sofka.crud.repository.GrupoRepository;
-import co.com.sofka.crud.repository.TodoRepository;
-import co.com.sofka.crud.service.GrupoService;
-import co.com.sofka.crud.service.TodoService;
-import co.com.sofka.crud.entity.Todo;
+import co.com.sofka.crud.dataTypes.TodoDTO;
+import co.com.sofka.crud.repositories.GrupoRepository;
+import co.com.sofka.crud.services.GrupoService;
+import co.com.sofka.crud.services.TodoService;
+import co.com.sofka.crud.entities.Todo;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -26,11 +25,19 @@ public class TodoController {
     private GrupoRepository IGrupo;
 
     @GetMapping("/grupo/{idTodoList}")
-    public ResponseEntity<List<Todo>> getAllTodosOfList(@PathVariable("idTodoList") Long idTodoList){
+    public ResponseEntity<List<TodoDTO>> getAllTodosOfList(@PathVariable("idTodoList") Long idTodoList){
         try{
-            List<Todo> todosOfList = serviceTodo.findAllTodosByGrupoId(idTodoList);
-            if(!todosOfList.isEmpty()){
-                return new ResponseEntity<>(todosOfList, HttpStatus.OK);
+            List<Todo> allOfGrupo = serviceTodo.findAllTodosByGrupoId(idTodoList);
+            if(!allOfGrupo.isEmpty()){
+                List<TodoDTO> todoDTO= new ArrayList<>();
+                for(int i=0;i<allOfGrupo.size();i++){
+                    todoDTO.add(new TodoDTO(allOfGrupo.get(i).getId(),
+                            allOfGrupo.get(i).getName(),
+                            allOfGrupo.get(i).isCompleted(),
+                            allOfGrupo.get(i).getIdTodoList()
+                    ));
+                }
+                return new ResponseEntity<List<TodoDTO>>(todoDTO,HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch(Exception e){
@@ -39,11 +46,18 @@ public class TodoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Todo>> getAllTodos(){
+    public ResponseEntity<List<TodoDTO>> getAllTodos(){
         try{
             List<Todo> todos = serviceTodo.findAll();
             if(!todos.isEmpty()){
-                return new ResponseEntity<>(todos, HttpStatus.OK);
+                List<TodoDTO> todoDTO= new ArrayList<>();
+                for(int i=0;i<todos.size();i++){
+                    todoDTO.add(new TodoDTO(todos.get(i).getId(),
+                            todos.get(i).getName(),
+                            todos.get(i).isCompleted(),
+                            todos.get(i).getIdTodoList()));
+                }
+                return new ResponseEntity<List<TodoDTO>>(todoDTO, HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch(Exception e){
@@ -52,18 +66,18 @@ public class TodoController {
     }
     
     @PostMapping
-    public ResponseEntity<Todo> save(@RequestBody Todo todo){
+    public ResponseEntity<Todo> save(@RequestBody TodoDTO todoDTO){
         try{
-            return new ResponseEntity<>(serviceTodo.save(todo), HttpStatus.CREATED);
+            return new ResponseEntity<>(serviceTodo.save(new Todo(todoDTO.getName(), todoDTO.getIdTodoList())), HttpStatus.CREATED);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody Todo todo){
+    public ResponseEntity<Todo> update(@PathVariable("id") Long id, @RequestBody TodoDTO todo){
         try{
-            Todo todoListUpdated = serviceTodo.update(id, todo);
+            Todo todoListUpdated = serviceTodo.update(id, new Todo(todo.getName(),todo.getIdTodoList()));
             return new ResponseEntity<>(todoListUpdated, HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
@@ -74,7 +88,7 @@ public class TodoController {
     public ResponseEntity<String> deleteAllTodos(){
         try{
             serviceTodo.deleteAll();
-            return new ResponseEntity<>("Todos los 'TODOs' han sido eliminados.", HttpStatus.OK);
+            return new ResponseEntity<>("Todos los objetos TODO's han sido eliminado.", HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
@@ -101,8 +115,9 @@ public class TodoController {
     }
 
     @GetMapping(value = "api/{id}/todo")
-    public Todo get(@PathVariable("id") Long id){
-        return serviceTodo.findById(id);
+    public TodoDTO get(@PathVariable("id") Long id){
+        Todo todoAux = serviceTodo.findById(id);
+        return new TodoDTO(todoAux.getName(),todoAux.getIdTodoList());
     }
 
 }

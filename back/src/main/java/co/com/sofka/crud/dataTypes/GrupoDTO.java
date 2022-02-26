@@ -1,24 +1,20 @@
-package co.com.sofka.crud.entity;
+package co.com.sofka.crud.dataTypes;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
-public class Grupo {
+public class GrupoDTO {
+        private Long id;
+        private String name;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(name = "name")
-    private String name;
-
-    public Grupo(){
-
+    public GrupoDTO() {
     }
 
-    public Grupo(String name) {
+    public GrupoDTO(String name) {
+        this.name = name;
+    }
+
+    public GrupoDTO(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 
