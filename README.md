@@ -1,3 +1,12 @@
+<h1 align="center">[SOLUCIÓN - VIDEO SOLUCIÓN]</h1>
+<p align="center">---CLICK PARA VER EL VIDEO---</p>
+
+<a href="https://drive.google.com/file/d/1n5Xgwa11stlPhx0Tiy6EKGdddiDl8pwR/view?usp=sharing">
+    <div align="center">
+        <img src="https://i.imgur.com/w0IOlwa.gif">
+    </div>
+</a>
+
 # [Problema]
 
 Pueden ver los siguientes videos para poder comprender la base del código fuente dentro de este repositorio. 
