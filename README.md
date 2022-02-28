@@ -1,7 +1,7 @@
 <h1 align="center">[SOLUCIÓN - VIDEO SOLUCIÓN]</h1>
 <p align="center">---CLICK PARA VER EL VIDEO---</p>
 
-<a href="https://drive.google.com/file/d/1n5Xgwa11stlPhx0Tiy6EKGdddiDl8pwR/view?usp=sharing">
+<a href="https://drive.google.com/file/d/1MbRplbBELIDz_j7wCrCjajGcUhDPxxW7/view?usp=sharing">
     <div align="center">
         <img src="https://i.imgur.com/w0IOlwa.gif">
     </div>
